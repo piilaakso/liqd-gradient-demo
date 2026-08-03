@@ -41,10 +41,10 @@
         so URL-bar resizing can never expose an edge */
   /* progressive blur — single smooth masked layers, no overdraw */
   /* blur near edges + black fades over them — the fade hides the blur's hard edge, so iOS quirks can't show */
-  .blur-top{ position:fixed; top:0; left:0; right:0; height:80px;
+  .blur-top{ position:fixed; top:0; left:0; right:0; height:88px;
     z-index:4; pointer-events:none;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
-  .fade-top{ position:fixed; top:0; left:0; right:0; height:210px;
+  .fade-top{ position:fixed; top:0; left:0; right:0; height:118px;
     z-index:5; pointer-events:none;
     background:linear-gradient(180deg,
       #000 0%, #000 22%,
@@ -53,10 +53,10 @@
       rgba(0,0,0,.21) 72%, rgba(0,0,0,.12) 80%,
       rgba(0,0,0,.06) 87%, rgba(0,0,0,.03) 92%,
       rgba(0,0,0,.01) 96%, rgba(0,0,0,0) 100%); }
-  .blur-bottom{ position:fixed; bottom:0; left:0; right:0; height:14vh;
+  .blur-bottom{ position:fixed; bottom:0; left:0; right:0; height:9vh;
     z-index:4; pointer-events:none;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
-  .fade-bottom{ position:fixed; bottom:0; left:0; right:0; height:30vh;
+  .fade-bottom{ position:fixed; bottom:0; left:0; right:0; height:15vh;
     z-index:5; pointer-events:none;
     background:linear-gradient(0deg,
       #000 0%, #000 12%,
@@ -176,22 +176,33 @@
 
   /* Bottom nav — backdrop blur so anything passing under it looks intentional */
   .bottom-nav{
-    position:fixed; left:16px; right:16px;
+    position:fixed; left:50%; transform:translateX(-50%);
+    width:min(92vw, 480px);
     bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);
     z-index:50; height:64px; border-radius:999px;
     display:flex; align-items:center; justify-content:space-around;
-    background:rgba(22,25,34,.55);
-    -webkit-backdrop-filter:blur(22px) saturate(140%);
-    backdrop-filter:blur(22px) saturate(140%);
-    border:1px solid rgba(255,255,255,.1);
+    background:linear-gradient(180deg, rgba(44,50,66,.34) 0%, rgba(16,18,26,.5) 100%);
+    -webkit-backdrop-filter:blur(24px) saturate(170%);
+    backdrop-filter:blur(24px) saturate(170%);
+    border:0;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.12),
+      inset 0 -1px 0 rgba(255,255,255,.03),
+      inset 0 0 22px rgba(130,160,255,.06),
+      inset 0 -10px 26px rgba(0,0,0,.30),
+      0 12px 34px rgba(0,0,0,.5);
+    transition: width .45s cubic-bezier(.32,.72,.28,1), height .45s cubic-bezier(.32,.72,.28,1);
   }
-  .bottom-nav svg{ width:24px; height:24px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+  .bottom-nav.mini{ width:200px; height:54px; }
+  .bottom-nav svg{ width:24px; height:24px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  .bottom-nav .opt{ transition:opacity .3s ease, width .35s ease, margin .35s ease; overflow:visible; }
+  .bottom-nav.mini .opt{ opacity:0; width:0; margin:0; pointer-events:none; }
 
   /* Desktop: don't stretch beyond the mobile content width */
   @media (min-width: 700px){
     main{ max-width: 520px; margin: 0 auto; }
     header{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; box-sizing: border-box; }
-    .bottom-nav{ left: 50%; transform: translateX(-50%); width: 488px; right: auto; }
+    .bottom-nav{ width: 480px; }
   }
 </style>
 </head>
@@ -275,9 +286,20 @@
 
   <nav class="bottom-nav">
     <svg viewBox="0 0 24 24"><path d="M5.5 9.5h13M5.5 14.5h13"/></svg>
-    <svg viewBox="0 0 24 24"><path d="M3.5 6.5l4.2 4.2L12 4.5l4.3 6.2 4.2-4.2-1.8 11H5.3l-1.8-11z" stroke-linejoin="round"/></svg>
-    <svg viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-7-4.2L4 20l4.4-1A8 8 0 0 0 12 20z"/><circle cx="8.8" cy="12" r="0.4"/><circle cx="12" cy="12" r="0.4"/><circle cx="15.2" cy="12" r="0.4"/></svg>
+    <svg class="opt" viewBox="0 0 24 24"><path d="M3.5 6.5l4.2 4.2L12 4.5l4.3 6.2 4.2-4.2-1.8 11H5.3l-1.8-11z" stroke-linejoin="round"/></svg>
+    <svg class="opt" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-7-4.2L4 20l4.4-1A8 8 0 0 0 12 20z"/><circle cx="8.8" cy="12" r="0.4"/><circle cx="12" cy="12" r="0.4"/><circle cx="15.2" cy="12" r="0.4"/></svg>
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4"/></svg>
   </nav>
+<script>
+  (function(){
+    var nav=document.querySelector('.bottom-nav'), ly=0;
+    addEventListener('scroll',function(){
+      var y=scrollY;
+      if(y>140 && y>ly+2) nav.classList.add('mini');
+      else if(y<ly-6 || y<90) nav.classList.remove('mini');
+      ly=y;
+    },{passive:true});
+  })();
+</script>
 </body>
 </html>
