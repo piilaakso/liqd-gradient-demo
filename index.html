@@ -41,8 +41,8 @@
         so URL-bar resizing can never expose an edge */
   .glow-fixed{
     position:fixed; left:0; right:0;
-    bottom:-6vh;                /* fallback */
-    bottom:-6lvh;               /* largest viewport = URL bar collapsed */
+    bottom:calc(-6vh - 80px);   /* fallback */
+    bottom:calc(-6lvh - 80px);  /* pushed down: tint starts at screen bottom */
     height:52vh; height:52lvh;
     z-index:-1; pointer-events:none;
     background: linear-gradient(0deg,
