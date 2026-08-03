@@ -47,23 +47,64 @@
   .fade-top{ position:fixed; top:0; left:0; right:0; height:118px;
     z-index:5; pointer-events:none;
     background:linear-gradient(180deg,
-      #000 0%, #000 10%,
-      rgba(0,0,0,.8) 24%, rgba(0,0,0,.58) 40%,
-      rgba(0,0,0,.4) 53%, rgba(0,0,0,.25) 65%,
-      rgba(0,0,0,.14) 75%, rgba(0,0,0,.07) 84%,
-      rgba(0,0,0,.03) 92%, rgba(0,0,0,0) 100%); }
+      rgba(0,0,0,1.0) 0.0%,
+      rgba(0,0,0,0.995) 4.0%,
+      rgba(0,0,0,0.98) 8.0%,
+      rgba(0,0,0,0.956) 12.0%,
+      rgba(0,0,0,0.923) 16.0%,
+      rgba(0,0,0,0.882) 20.0%,
+      rgba(0,0,0,0.834) 24.0%,
+      rgba(0,0,0,0.779) 28.0%,
+      rgba(0,0,0,0.719) 32.0%,
+      rgba(0,0,0,0.655) 36.0%,
+      rgba(0,0,0,0.589) 40.0%,
+      rgba(0,0,0,0.521) 44.0%,
+      rgba(0,0,0,0.454) 48.0%,
+      rgba(0,0,0,0.388) 52.0%,
+      rgba(0,0,0,0.324) 56.0%,
+      rgba(0,0,0,0.265) 60.0%,
+      rgba(0,0,0,0.21) 64.0%,
+      rgba(0,0,0,0.161) 68.0%,
+      rgba(0,0,0,0.118) 72.0%,
+      rgba(0,0,0,0.082) 76.0%,
+      rgba(0,0,0,0.053) 80.0%,
+      rgba(0,0,0,0.031) 84.0%,
+      rgba(0,0,0,0.015) 88.0%,
+      rgba(0,0,0,0.006) 92.0%,
+      rgba(0,0,0,0.001) 96.0%,
+      rgba(0,0,0,0.0) 100.0%); }
   .blur-bottom{ position:fixed; bottom:0; left:0; right:0; height:5vh;
     z-index:4; pointer-events:none;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
   .fade-bottom{ position:fixed; bottom:0; left:0; right:0; height:15vh;
     z-index:5; pointer-events:none;
     background:linear-gradient(0deg,
-      #000 0%, #000 6%,
-      rgba(0,0,0,.8) 18%, rgba(0,0,0,.6) 32%,
-      rgba(0,0,0,.42) 46%, rgba(0,0,0,.28) 58%,
-      rgba(0,0,0,.17) 69%, rgba(0,0,0,.1) 78%,
-      rgba(0,0,0,.05) 86%, rgba(0,0,0,.02) 93%,
-      rgba(0,0,0,0) 100%); }
+      rgba(0,0,0,1.0) 0.0%,
+      rgba(0,0,0,0.995) 4.0%,
+      rgba(0,0,0,0.98) 8.0%,
+      rgba(0,0,0,0.956) 12.0%,
+      rgba(0,0,0,0.923) 16.0%,
+      rgba(0,0,0,0.882) 20.0%,
+      rgba(0,0,0,0.834) 24.0%,
+      rgba(0,0,0,0.779) 28.0%,
+      rgba(0,0,0,0.719) 32.0%,
+      rgba(0,0,0,0.655) 36.0%,
+      rgba(0,0,0,0.589) 40.0%,
+      rgba(0,0,0,0.521) 44.0%,
+      rgba(0,0,0,0.454) 48.0%,
+      rgba(0,0,0,0.388) 52.0%,
+      rgba(0,0,0,0.324) 56.0%,
+      rgba(0,0,0,0.265) 60.0%,
+      rgba(0,0,0,0.21) 64.0%,
+      rgba(0,0,0,0.161) 68.0%,
+      rgba(0,0,0,0.118) 72.0%,
+      rgba(0,0,0,0.082) 76.0%,
+      rgba(0,0,0,0.053) 80.0%,
+      rgba(0,0,0,0.031) 84.0%,
+      rgba(0,0,0,0.015) 88.0%,
+      rgba(0,0,0,0.006) 92.0%,
+      rgba(0,0,0,0.001) 96.0%,
+      rgba(0,0,0,0.0) 100.0%); }
 
   /* ============================================================ */
 
@@ -189,11 +230,11 @@
       inset 0 0 22px rgba(130,160,255,.06),
       inset 0 -10px 26px rgba(0,0,0,.30),
       0 12px 34px rgba(0,0,0,.5);
-    transition: width .45s cubic-bezier(.32,.72,.28,1), height .45s cubic-bezier(.32,.72,.28,1);
+    transition: width .6s cubic-bezier(.34,1.56,.64,1), height .6s cubic-bezier(.34,1.56,.64,1);  /* springy, Figma "Quick"-like */
   }
-  .bottom-nav.mini{ width:200px; height:54px; }
-  .bottom-nav svg{ width:24px; height:24px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
-  .bottom-nav .opt{ transition:opacity .3s ease, width .35s ease, margin .35s ease; overflow:visible; }
+  .bottom-nav.mini{ width:176px; height:52px; }
+  .bottom-nav svg{ width:25px; height:25px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  .bottom-nav .opt{ transition:opacity .38s ease .05s, width .55s cubic-bezier(.34,1.56,.64,1), margin .55s cubic-bezier(.34,1.56,.64,1); overflow:visible; }
   .bottom-nav.mini .opt{ opacity:0; width:0; margin:0; pointer-events:none; }
 
   /* Desktop: don't stretch beyond the mobile content width */
