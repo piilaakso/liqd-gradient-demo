@@ -42,14 +42,14 @@
   .glow-fixed{
     position:fixed; left:0; right:0;
     bottom:-140px;              /* overdraw below screen; plain px, iOS-proof */
-    height:60vh;                /* iOS vh = large viewport, stable */
-    z-index:-1; pointer-events:none;
+    height:48vh;                /* veil tops out just above the nav */
+    z-index:5; pointer-events:none;  /* ABOVE content, BELOW nav pill (50) */
     background: linear-gradient(0deg,
-      rgba(34,64,190,.42) 0%,
-      rgba(28,52,160,.24) 28%,
-      rgba(22,42,130,.11) 52%,
-      rgba(16,30,95,.04) 76%,
-      rgba(0,0,0,0) 100%);      /* eased fade — no visible edge */
+      rgba(13,22,68,.92) 0%,
+      rgba(15,26,80,.66) 22%,
+      rgba(14,24,74,.34) 48%,
+      rgba(10,18,55,.12) 74%,
+      rgba(0,0,0,0) 100%);      /* dark navy veil — pushes thumbnails back */
   }
 
   /* ============================================================ */
