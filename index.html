@@ -41,9 +41,47 @@
         so URL-bar resizing can never expose an edge */
   /* progressive blur — single smooth masked layers, no overdraw */
   /* blur near edges + black fades over them — the fade hides the blur's hard edge, so iOS quirks can't show */
-  .blur-top{ position:fixed; top:0; left:0; right:0; height:48px;
-    z-index:4; pointer-events:none;
-    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+  /* progressive blur: 20 strips over 60px, ~0.15px blur deltas — continuous ramp */
+  .gt1{ position:fixed; top:0; left:0; right:0; height:60.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.15px); backdrop-filter:blur(0.15px); }
+  .gb1{ position:fixed; bottom:0; left:0; right:0; height:60.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.15px); backdrop-filter:blur(0.15px); }
+  .gt2{ position:fixed; top:0; left:0; right:0; height:57.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.3px); backdrop-filter:blur(0.3px); }
+  .gb2{ position:fixed; bottom:0; left:0; right:0; height:57.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.3px); backdrop-filter:blur(0.3px); }
+  .gt3{ position:fixed; top:0; left:0; right:0; height:54.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.45px); backdrop-filter:blur(0.45px); }
+  .gb3{ position:fixed; bottom:0; left:0; right:0; height:54.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.45px); backdrop-filter:blur(0.45px); }
+  .gt4{ position:fixed; top:0; left:0; right:0; height:51.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.6px); backdrop-filter:blur(0.6px); }
+  .gb4{ position:fixed; bottom:0; left:0; right:0; height:51.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.6px); backdrop-filter:blur(0.6px); }
+  .gt5{ position:fixed; top:0; left:0; right:0; height:48.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.75px); backdrop-filter:blur(0.75px); }
+  .gb5{ position:fixed; bottom:0; left:0; right:0; height:48.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.75px); backdrop-filter:blur(0.75px); }
+  .gt6{ position:fixed; top:0; left:0; right:0; height:45.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.9px); backdrop-filter:blur(0.9px); }
+  .gb6{ position:fixed; bottom:0; left:0; right:0; height:45.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(0.9px); backdrop-filter:blur(0.9px); }
+  .gt7{ position:fixed; top:0; left:0; right:0; height:42.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.05px); backdrop-filter:blur(1.05px); }
+  .gb7{ position:fixed; bottom:0; left:0; right:0; height:42.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.05px); backdrop-filter:blur(1.05px); }
+  .gt8{ position:fixed; top:0; left:0; right:0; height:39.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.2px); backdrop-filter:blur(1.2px); }
+  .gb8{ position:fixed; bottom:0; left:0; right:0; height:39.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.2px); backdrop-filter:blur(1.2px); }
+  .gt9{ position:fixed; top:0; left:0; right:0; height:36.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.35px); backdrop-filter:blur(1.35px); }
+  .gb9{ position:fixed; bottom:0; left:0; right:0; height:36.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.35px); backdrop-filter:blur(1.35px); }
+  .gt10{ position:fixed; top:0; left:0; right:0; height:33.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.5px); backdrop-filter:blur(1.5px); }
+  .gb10{ position:fixed; bottom:0; left:0; right:0; height:33.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.5px); backdrop-filter:blur(1.5px); }
+  .gt11{ position:fixed; top:0; left:0; right:0; height:30.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.65px); backdrop-filter:blur(1.65px); }
+  .gb11{ position:fixed; bottom:0; left:0; right:0; height:30.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.65px); backdrop-filter:blur(1.65px); }
+  .gt12{ position:fixed; top:0; left:0; right:0; height:27.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.8px); backdrop-filter:blur(1.8px); }
+  .gb12{ position:fixed; bottom:0; left:0; right:0; height:27.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.8px); backdrop-filter:blur(1.8px); }
+  .gt13{ position:fixed; top:0; left:0; right:0; height:24.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.95px); backdrop-filter:blur(1.95px); }
+  .gb13{ position:fixed; bottom:0; left:0; right:0; height:24.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(1.95px); backdrop-filter:blur(1.95px); }
+  .gt14{ position:fixed; top:0; left:0; right:0; height:21.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.1px); backdrop-filter:blur(2.1px); }
+  .gb14{ position:fixed; bottom:0; left:0; right:0; height:21.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.1px); backdrop-filter:blur(2.1px); }
+  .gt15{ position:fixed; top:0; left:0; right:0; height:18.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.25px); backdrop-filter:blur(2.25px); }
+  .gb15{ position:fixed; bottom:0; left:0; right:0; height:18.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.25px); backdrop-filter:blur(2.25px); }
+  .gt16{ position:fixed; top:0; left:0; right:0; height:15.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.4px); backdrop-filter:blur(2.4px); }
+  .gb16{ position:fixed; bottom:0; left:0; right:0; height:15.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.4px); backdrop-filter:blur(2.4px); }
+  .gt17{ position:fixed; top:0; left:0; right:0; height:12.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.55px); backdrop-filter:blur(2.55px); }
+  .gb17{ position:fixed; bottom:0; left:0; right:0; height:12.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.55px); backdrop-filter:blur(2.55px); }
+  .gt18{ position:fixed; top:0; left:0; right:0; height:9.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.7px); backdrop-filter:blur(2.7px); }
+  .gb18{ position:fixed; bottom:0; left:0; right:0; height:9.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.7px); backdrop-filter:blur(2.7px); }
+  .gt19{ position:fixed; top:0; left:0; right:0; height:6.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.85px); backdrop-filter:blur(2.85px); }
+  .gb19{ position:fixed; bottom:0; left:0; right:0; height:6.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(2.85px); backdrop-filter:blur(2.85px); }
+  .gt20{ position:fixed; top:0; left:0; right:0; height:3.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(3.0px); backdrop-filter:blur(3.0px); }
+  .gb20{ position:fixed; bottom:0; left:0; right:0; height:3.0px; z-index:4; pointer-events:none; -webkit-backdrop-filter:blur(3.0px); backdrop-filter:blur(3.0px); }
   .fade-top{ position:fixed; top:0; left:0; right:0; height:118px;
     z-index:5; pointer-events:none;
     background:linear-gradient(180deg,
@@ -73,9 +111,6 @@
       rgba(0,0,0,0.006) 92.0%,
       rgba(0,0,0,0.001) 96.0%,
       rgba(0,0,0,0.0) 100.0%); }
-  .blur-bottom{ position:fixed; bottom:0; left:0; right:0; height:5vh;
-    z-index:4; pointer-events:none;
-    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
   .fade-bottom{ position:fixed; bottom:0; left:0; right:0; height:15vh;
     z-index:5; pointer-events:none;
     background:linear-gradient(0deg,
@@ -219,7 +254,7 @@
     width:min(92vw, 480px);
     bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);
     z-index:50; height:64px; border-radius:999px;
-    display:flex; align-items:center; justify-content:space-around;
+    display:flex; align-items:center; justify-content:space-around; padding:0 18px; box-sizing:border-box;
     background:linear-gradient(180deg, rgba(44,50,66,.34) 0%, rgba(16,18,26,.5) 100%);
     -webkit-backdrop-filter:blur(24px) saturate(170%);
     backdrop-filter:blur(24px) saturate(170%);
@@ -230,10 +265,10 @@
       inset 0 0 22px rgba(130,160,255,.06),
       inset 0 -10px 26px rgba(0,0,0,.30),
       0 12px 34px rgba(0,0,0,.5);
-    transition: width .6s cubic-bezier(.34,1.56,.64,1), height .6s cubic-bezier(.34,1.56,.64,1);  /* springy, Figma "Quick"-like */
+    transition: width .65s cubic-bezier(.28,1.9,.38,.92), height .65s cubic-bezier(.28,1.9,.38,.92);  /* pronounced spring overshoot */
   }
   .bottom-nav.mini{ width:176px; height:52px; }
-  .bottom-nav svg{ width:25px; height:25px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  .bottom-nav svg{ width:28px; height:28px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
   .bottom-nav .opt{ transition:opacity .38s ease .05s, width .55s cubic-bezier(.34,1.56,.64,1), margin .55s cubic-bezier(.34,1.56,.64,1); overflow:visible; }
   .bottom-nav.mini .opt{ opacity:0; width:0; margin:0; pointer-events:none; }
 
@@ -248,15 +283,52 @@
 <body>
 
   <!-- gradient layers -->
-  <div class="blur-top" aria-hidden="true"></div>
+  <div class="gt1" aria-hidden="true"></div>
+  <div class="gt2" aria-hidden="true"></div>
+  <div class="gt3" aria-hidden="true"></div>
+  <div class="gt4" aria-hidden="true"></div>
+  <div class="gt5" aria-hidden="true"></div>
+  <div class="gt6" aria-hidden="true"></div>
+  <div class="gt7" aria-hidden="true"></div>
+  <div class="gt8" aria-hidden="true"></div>
+  <div class="gt9" aria-hidden="true"></div>
+  <div class="gt10" aria-hidden="true"></div>
+  <div class="gt11" aria-hidden="true"></div>
+  <div class="gt12" aria-hidden="true"></div>
+  <div class="gt13" aria-hidden="true"></div>
+  <div class="gt14" aria-hidden="true"></div>
+  <div class="gt15" aria-hidden="true"></div>
+  <div class="gt16" aria-hidden="true"></div>
+  <div class="gt17" aria-hidden="true"></div>
+  <div class="gt18" aria-hidden="true"></div>
+  <div class="gt19" aria-hidden="true"></div>
+  <div class="gt20" aria-hidden="true"></div>
   <div class="fade-top" aria-hidden="true"></div>
 
   <header>
       <img class="logo-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJiIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAuMzggNjQuMTIiPjxkZWZzPjxzdHlsZT4uZHtmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJjIj48Y2lyY2xlIGNsYXNzPSJkIiBjeD0iMTczLjgzIiBjeT0iNTMuNzMiIHI9IjEwLjM5Ii8+PHBhdGggY2xhc3M9ImQiIGQ9Ik0xNDEuMTksMjEuMDljNi4wMS02LjAxLDE1Ljc4LTYuMDEsMjEuNzgsMCw2LjAxLDYuMDEsNi4wMSwxNS43OCwwLDIxLjc4LTYuMDEsNi4wMS0xNS43OCw2LjAxLTIxLjc4LDBzLTYuMDEtMTUuNzgsMC0yMS43OE0xMjkuODgsOS43OGMtMTIuMjYsMTIuMjYtMTIuMjYsMzIuMTUsMCw0NC40MXMzMi4xNSwxMi4yNiw0NC40MSwwYzEyLjI2LTEyLjI2LDEyLjI2LTMyLjE1LDAtNDQuNDEtMTIuMjYtMTIuMjYtMzIuMTUtMTIuMjYtNDQuNDEsMGgwWiIvPjxyZWN0IGNsYXNzPSJkIiB4PSI3OS4yMyIgeT0iLjEyIiB3aWR0aD0iMTYiIGhlaWdodD0iNjEuNTEiIHJ4PSI4IiByeT0iOCIvPjxwYXRoIGNsYXNzPSJkIiBkPSJNNDMuMjEsNjIuMzdoLTEyLjdDMTMuNjYsNjIuMzcsMCw0OC43MSwwLDMxLjg2VjguMTJDMCwzLjcsMy41OC4xMiw4LC4xMmgwYzQuNDIsMCw4LDMuNTgsOCw4djIzLjY0YzAsOC4wNyw2LjU0LDE0LjYyLDE0LjYyLDE0LjYyaDEyLjZjNC40MiwwLDgsMy41OCw4LDhoMGMwLDQuNDItMy41OCw4LTgsOFoiLz48cGF0aCBjbGFzcz0iZCIgZD0iTTIyOC40OSw2Mi4zN2gtMTQuNTRjLTQuNDIsMC04LTMuNTgtOC04aDBjMC00LjQyLDMuNTgtOCw4LThoMTQuNzZjOC4xOSwwLDE1LjI3LTYuMjgsMTUuNjUtMTQuNDYuNDEtOC43LTYuNTYtMTUuOTEtMTUuMTctMTUuOTFoLTE1LjI1Yy00LjQyLDAtOC0zLjU4LTgtOGgwYzAtNC40MiwzLjU4LTgsOC04aDE1LjI1YzE3LjUsMCwzMS42NywxNC40OCwzMS4xNywzMi4wOS0uNDgsMTYuOTktMTQuODksMzAuMjktMzEuODgsMzAuMjlaIi8+PC9nPjwvc3ZnPg==" alt="LIQD">
       <button class="enter-btn">Enter</button>
     </header>
-
-  <div class="blur-bottom" aria-hidden="true"></div>
+  <div class="gb1" aria-hidden="true"></div>
+  <div class="gb2" aria-hidden="true"></div>
+  <div class="gb3" aria-hidden="true"></div>
+  <div class="gb4" aria-hidden="true"></div>
+  <div class="gb5" aria-hidden="true"></div>
+  <div class="gb6" aria-hidden="true"></div>
+  <div class="gb7" aria-hidden="true"></div>
+  <div class="gb8" aria-hidden="true"></div>
+  <div class="gb9" aria-hidden="true"></div>
+  <div class="gb10" aria-hidden="true"></div>
+  <div class="gb11" aria-hidden="true"></div>
+  <div class="gb12" aria-hidden="true"></div>
+  <div class="gb13" aria-hidden="true"></div>
+  <div class="gb14" aria-hidden="true"></div>
+  <div class="gb15" aria-hidden="true"></div>
+  <div class="gb16" aria-hidden="true"></div>
+  <div class="gb17" aria-hidden="true"></div>
+  <div class="gb18" aria-hidden="true"></div>
+  <div class="gb19" aria-hidden="true"></div>
+  <div class="gb20" aria-hidden="true"></div>
   <div class="fade-bottom" aria-hidden="true"></div>
 
   <main>
@@ -324,7 +396,7 @@
   </main>
 
   <nav class="bottom-nav">
-    <svg viewBox="0 0 24 24"><path d="M5.5 9.5h13M5.5 14.5h13"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M4.5 9.7h15M4.5 14.3h15"/></svg>
     <svg class="opt" viewBox="0 0 24 24"><path d="M3.5 6.5l4.2 4.2L12 4.5l4.3 6.2 4.2-4.2-1.8 11H5.3l-1.8-11z" stroke-linejoin="round"/></svg>
     <svg class="opt" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-7-4.2L4 20l4.4-1A8 8 0 0 0 12 20z"/><circle cx="8.8" cy="12" r="0.4"/><circle cx="12" cy="12" r="0.4"/><circle cx="15.2" cy="12" r="0.4"/></svg>
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4"/></svg>
