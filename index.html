@@ -39,6 +39,16 @@
      2) gradient fades to fully transparent long before its own edge
      3) layer overdraws past the viewport bottom (lvh + negative offset),
         so URL-bar resizing can never expose an edge */
+  .top-blur{
+    position:fixed; top:0; left:0; right:0;
+    height:130px;
+    z-index:4; pointer-events:none;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 100%);
+  }
   .glow-blur{
     position:fixed; left:0; right:0;
     bottom:-140px;
@@ -67,9 +77,11 @@
 
   /* Header */
   header{
+    position:fixed; top:0; left:0; right:0; z-index:30;
     display:flex; align-items:center; justify-content:space-between;
-    padding:calc(env(safe-area-inset-top, 0px) + 16px) 20px 8px;
+    padding:calc(env(safe-area-inset-top, 0px) + 14px) 20px 10px;
   }
+  main{ padding-top:calc(env(safe-area-inset-top, 0px) + 78px); }
   .logo{ font-weight:700; font-size:30px; letter-spacing:.14em; }
   .logo-img{ height:30px; display:block; } .copyright .logo-img{ height:20px; }
   .enter-btn{
@@ -182,6 +194,7 @@
   /* Desktop: don't stretch beyond the mobile content width */
   @media (min-width: 700px){
     main{ max-width: 520px; margin: 0 auto; }
+    header{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; box-sizing: border-box; }
     .bottom-nav{ left: 50%; transform: translateX(-50%); width: 488px; right: auto; }
   }
 </style>
@@ -189,6 +202,7 @@
 <body>
 
   <!-- gradient layers -->
+  <div class="top-blur" aria-hidden="true"></div>
   <div class="glow-blur" aria-hidden="true"></div>
   <div class="glow-fixed" aria-hidden="true"></div>
 
