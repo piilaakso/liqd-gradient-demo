@@ -216,6 +216,13 @@
     border:1px solid rgba(255,255,255,.1);
   }
   .bottom-nav svg{ width:24px; height:24px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* Desktop: don't stretch beyond the mobile content width */
+  @media (min-width: 700px){
+    main{ max-width: 520px; margin: 0 auto; }
+    .bottom-nav{ left: 50%; transform: translateX(-50%); width: 488px; right: auto; }
+    .glow-fixed, .glow-broken{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; }
+  }
 </style>
 </head>
 <body data-mode="fixed">
@@ -242,14 +249,6 @@
       <h1>LIQD GOES ALPHA</h1>
       <p>You're one of the few inside. Lower limits, boosted rewards. Play it, break it. Everything you break pays.</p>
     </section>
-
-    <nav class="tabs">
-      <div class="tab active"><span class="dot">⌂</span> Lobby</div>
-      <div class="tab"><span class="dot">◎</span> Originals</div>
-      <div class="tab"><span class="dot">✦</span> Slots</div>
-      <div class="tab"><span class="dot">▸</span> Latest Releases</div>
-      <div class="tab"><span class="dot">▦</span> Table Games</div>
-    </nav>
 
     <section class="row">
       <div class="row-head"><h2>LIQD Originals</h2><a class="view-all">View all</a></div>
