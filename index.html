@@ -161,7 +161,7 @@
 
   /* Hero */
   .hero{ text-align:center; padding:0 24px 14px; }
-  .hero img{ width:min(62vw, 300px); height:auto; display:block; margin:0 auto; transform:translateY(18px) scale(1.34); transform-origin:bottom center; }
+  .hero img{ width:min(62vw, 300px); height:auto; display:block; margin:0 auto; transform:translateY(4px) scale(1.28); transform-origin:bottom center; }
   .hero h1{ font-size:clamp(30px, 8vw, 38px); font-weight:700; letter-spacing:.02em; margin-top:6px; }
   .hero p{ color:var(--muted); font-size:15px; line-height:1.5; margin:10px auto 0; max-width:320px; }
 
@@ -196,12 +196,13 @@
     flex:0 0 auto; width:150px; aspect-ratio:1; border-radius:26px;
     position:relative; overflow:hidden; background:var(--card);
     display:flex; flex-direction:column; justify-content:flex-end;
-    padding:12px; border:1px solid rgba(255,255,255,.05);
+    padding:10px 10px 8px; border:1px solid rgba(255,255,255,.05);
   }
   .card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .card::after{ content:''; position:absolute; left:0; right:0; bottom:0; height:52%;
     background:linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 72%); pointer-events:none; }
   .card .title, .card .provider{ position:relative; z-index:1; }
+  .card.baked::after{ display:none; }
   .card .chip{
     position:absolute; top:10px; left:50%; transform:translateX(-50%);
     font-size:9px; font-weight:600; letter-spacing:.08em;
@@ -209,7 +210,9 @@
     padding:4px 10px; border-radius:999px; white-space:nowrap;
   }
   .card .title{ font-size:14px; font-weight:700; text-align:center; text-transform:uppercase; line-height:1.2; text-shadow:0 2px 8px rgba(0,0,0,.7); }
-  .card .provider{ font-size:8.5px; font-weight:600; letter-spacing:.1em; color:rgba(255,255,255,.75); text-align:center; margin-top:3px; text-transform:uppercase; }
+  .card .provider{ position:absolute; top:10px; left:0; right:0; z-index:1;
+    font-size:9px; font-weight:600; letter-spacing:.12em; color:rgba(255,255,255,.9);
+    text-align:center; text-transform:uppercase; text-shadow:0 1px 5px rgba(0,0,0,.7); }
   .card.soon .title{ color:rgba(255,255,255,.45); }
   .card .soon-label{
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
@@ -251,9 +254,9 @@
   /* Bottom nav — backdrop blur so anything passing under it looks intentional */
   .bottom-nav{
     position:fixed; left:50%; transform:translateX(-50%);
-    width:min(92vw, 480px);
+    width:min(calc(100vw - 56px), 480px);   /* IG: 28px side margins */
     bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);
-    z-index:50; height:64px; border-radius:999px;
+    z-index:50; height:56px; border-radius:999px;   /* IG height */
     display:flex; align-items:center; justify-content:space-between; padding:0 36px; box-sizing:border-box;
     background:linear-gradient(180deg, rgba(44,50,66,.34) 0%, rgba(16,18,26,.5) 100%);
     -webkit-backdrop-filter:blur(24px) saturate(170%);
@@ -351,13 +354,16 @@
     <section class="row">
       <div class="row-head"><h2>Slots</h2><a class="view-all">View All</a></div>
       <div class="cards">
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/red-tiger-mega-pyramid.webp" alt="Mega Pyramid" loading="lazy"><div class="title">Mega Pyramid</div><div class="provider">Red Tiger</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/netent-gonzos-quest.webp" alt="Gonzo's Quest" loading="lazy"><div class="title">Gonzo's Quest</div><div class="provider">NetEnt</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-gates-of-olympus.webp" alt="Gates of Olympus" loading="lazy"><div class="title">Gates of Olympus</div><div class="provider">Pragmatic Play</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-wanted-dead-or-a-wild.webp" alt="Wanted Dead or a Wild" loading="lazy"><div class="title">Wanted Dead or a Wild</div><div class="provider">Hacksaw Gaming</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-fat-panda.webp" alt="Fat Panda" loading="lazy"><div class="title">Fat Panda</div><div class="provider">Pragmatic Play</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-hand-of-anubis.webp" alt="Hand of Anubis" loading="lazy"><div class="title">Hand of Anubis</div><div class="provider">Hacksaw Gaming</div></div>
-        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-stormforged.webp" alt="Stormforged" loading="lazy"><div class="title">Stormforged</div><div class="provider">Hacksaw Gaming</div></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/relax-gaming-midnight-marauder.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/relax-gaming-powerspin.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/relax-gaming-ramses-revenge.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/relax-gaming-sails-of-fortune.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/relax-gaming-santas-stack.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-donny-dough.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-divine-drop.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-le-viking.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/shady-lady-devils-finger.webp" alt="" loading="lazy"></div>
+        <div class="card baked"><img src="https://cdn.liqd.com/games/thumbnails/shady-lady-oops.webp" alt="" loading="lazy"></div>
       </div>
     </section>
 
@@ -392,7 +398,7 @@
   </main>
 
   <nav class="bottom-nav">
-    <svg viewBox="0 0 24 24"><path d="M4.5 9.7h15M4.5 14.3h15"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M4.5 8.7h15M4.5 15.3h15"/></svg>
     <svg class="opt" viewBox="0 0 24 24"><path d="M3.5 6.5l4.2 4.2L12 4.5l4.3 6.2 4.2-4.2-1.8 11H5.3l-1.8-11z" stroke-linejoin="round"/></svg>
     <svg class="opt" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-7-4.2L4 20l4.4-1A8 8 0 0 0 12 20z"/><circle cx="8.8" cy="12" r="0.4"/><circle cx="12" cy="12" r="0.4"/><circle cx="15.2" cy="12" r="0.4"/></svg>
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4"/></svg>
@@ -405,9 +411,9 @@
     function frame(){
       p+=(tp-p)*0.22;                       /* exponential glide — always smooth */
       if(Math.abs(tp-p)<0.002){ p=tp; running=false; } else requestAnimationFrame(frame);
-      var maxW=Math.min(innerWidth*.92,480);
+      var maxW=Math.min(innerWidth-56,480);
       nav.style.width=(maxW+(176-maxW)*p)+'px';
-      nav.style.height=(64-12*p)+'px';
+      nav.style.height=(56-8*p)+'px';
       var k=Math.max(0,1-p*1.6);
       for(var i=0;i<opts.length;i++){ opts[i].style.opacity=k; opts[i].style.width=(28*k)+'px'; }
       if(running) requestAnimationFrame(frame);
