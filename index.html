@@ -161,7 +161,7 @@
 
   /* Hero */
   .hero{ text-align:center; padding:0 24px 14px; }
-  .hero img{ width:min(62vw, 300px); height:auto; display:block; margin:0 auto; transform:scale(1.28); transform-origin:center; }
+  .hero img{ width:min(62vw, 300px); height:auto; display:block; margin:0 auto; transform:scale(1.22); transform-origin:bottom center; }
   .hero h1{ font-size:clamp(30px, 8vw, 38px); font-weight:700; letter-spacing:.02em; margin-top:6px; }
   .hero p{ color:var(--muted); font-size:15px; line-height:1.5; margin:10px auto 0; max-width:320px; }
 
@@ -267,18 +267,18 @@
       0 12px 34px rgba(0,0,0,.5);
     transition: width .42s cubic-bezier(.4,0,.2,1), height .42s cubic-bezier(.4,0,.2,1);
   }
-  .bottom-nav.mini{ width:176px; height:52px; animation: rubberIn .6s cubic-bezier(.3,.7,.4,1) .3s; }
-  .bottom-nav.pop{ animation: rubberOut .6s cubic-bezier(.3,.7,.4,1) .28s; }
+  .bottom-nav.mini{ width:176px; height:52px; animation: rubberIn .38s cubic-bezier(.3,.7,.4,1) .18s; }
+  .bottom-nav.pop{ animation: rubberOut .38s cubic-bezier(.3,.7,.4,1) .16s; }
   @keyframes rubberIn{
     0%{ transform:translateX(-50%) scale(1,1); }
-    45%{ transform:translateX(-50%) scale(.93,1.09); }
-    72%{ transform:translateX(-50%) scale(1.05,.95); }
+    45%{ transform:translateX(-50%) scale(.965,1.045); }
+    72%{ transform:translateX(-50%) scale(1.018,.988); }
     100%{ transform:translateX(-50%) scale(1,1); }
   }
   @keyframes rubberOut{
     0%{ transform:translateX(-50%) scale(1,1); }
-    40%{ transform:translateX(-50%) scale(1.07,.93); }
-    70%{ transform:translateX(-50%) scale(.96,1.05); }
+    40%{ transform:translateX(-50%) scale(1.035,.965); }
+    70%{ transform:translateX(-50%) scale(.988,1.015); }
     100%{ transform:translateX(-50%) scale(1,1); }
   }
   .bottom-nav svg{ width:28px; height:28px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
@@ -426,7 +426,7 @@
       else if(y<ly-6 || y<90) nav.classList.remove('mini');
       if(was && !nav.classList.contains('mini')){
         nav.classList.add('pop');
-        clearTimeout(nav._pt); nav._pt=setTimeout(function(){nav.classList.remove('pop');},650);
+        clearTimeout(nav._pt); nav._pt=setTimeout(function(){nav.classList.remove('pop');},600);
       }
       ly=y;
     },{passive:true});
