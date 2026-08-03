@@ -265,28 +265,8 @@
       inset 0 0 22px rgba(130,160,255,.06),
       inset 0 -10px 26px rgba(0,0,0,.30),
       0 12px 34px rgba(0,0,0,.5);
-    transition: width .42s cubic-bezier(.4,0,.2,1), height .42s cubic-bezier(.4,0,.2,1);
-  }
-  .bottom-nav.mini{ width:176px; height:52px; animation: rubberIn .38s cubic-bezier(.3,.7,.4,1) .18s; }
-  .bottom-nav.pop{ animation: rubberOut .38s cubic-bezier(.3,.7,.4,1) .16s; }
-  @keyframes rubberIn{
-    0%{ transform:translateX(-50%) scale(1,1); }
-    45%{ transform:translateX(-50%) scale(.965,1.045); }
-    72%{ transform:translateX(-50%) scale(1.018,.988); }
-    100%{ transform:translateX(-50%) scale(1,1); }
-  }
-  @keyframes rubberOut{
-    0%{ transform:translateX(-50%) scale(1,1); }
-    40%{ transform:translateX(-50%) scale(1.035,.965); }
-    70%{ transform:translateX(-50%) scale(.988,1.015); }
-    100%{ transform:translateX(-50%) scale(1,1); }
   }
   .bottom-nav svg{ width:28px; height:28px; stroke:#aeb4bf; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
-  /* expand: pill springs open, icons fade in after */
-  .bottom-nav .opt{ transition:opacity .28s ease .22s, width .55s cubic-bezier(.28,1.9,.38,.92), margin .55s cubic-bezier(.28,1.9,.38,.92); }
-  /* collapse: icons vanish instantly, then width moves — no squash visible */
-  .bottom-nav.mini .opt{ opacity:0; width:0; margin:0; pointer-events:none;
-    transition:opacity .12s ease, width .5s cubic-bezier(.28,1.9,.38,.92) .08s, margin .5s cubic-bezier(.28,1.9,.38,.92) .08s; }
 
   /* Desktop: don't stretch beyond the mobile content width */
   @media (min-width: 700px){
@@ -419,17 +399,24 @@
   </nav>
 <script>
   (function(){
-    var nav=document.querySelector('.bottom-nav'), ly=0;
+    var nav=document.querySelector('.bottom-nav');
+    var opts=nav.querySelectorAll('.opt');
+    var p=0, ly=scrollY||0, tick=false;
+    function apply(){
+      tick=false;
+      var maxW=Math.min(innerWidth*.92,480);
+      var w=maxW+(176-maxW)*p, h=64-12*p;
+      nav.style.width=w+'px'; nav.style.height=h+'px';
+      var k=Math.max(0,1-p*1.6);
+      for(var i=0;i<opts.length;i++){ opts[i].style.opacity=k; opts[i].style.width=(28*k)+'px'; }
+    }
     addEventListener('scroll',function(){
-      var y=scrollY, was=nav.classList.contains('mini');
-      if(y>140 && y>ly+2) nav.classList.add('mini');
-      else if(y<ly-6 || y<90) nav.classList.remove('mini');
-      if(was && !nav.classList.contains('mini')){
-        nav.classList.add('pop');
-        clearTimeout(nav._pt); nav._pt=setTimeout(function(){nav.classList.remove('pop');},600);
-      }
-      ly=y;
+      var y=scrollY, d=y-ly; ly=y;
+      if(y<60){ p=0; }
+      else { p+=(d>0 ? d/140 : d/60); p=Math.max(0,Math.min(1,p)); }
+      if(!tick){ tick=true; requestAnimationFrame(apply); }
     },{passive:true});
+    apply();
   })();
 </script>
 </body>
