@@ -22,7 +22,7 @@
   html{ background: var(--bg); }
   body{
     font-family:'Bai Jamjuree', -apple-system, system-ui, sans-serif;
-    background: var(--bg);
+    background: transparent;  /* html carries the black — glow at z-index:-1 shows through */
     color: var(--text);
     overflow-x:hidden;
     min-height:100%;
@@ -231,37 +231,6 @@
         <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-live-mega-sicbo.webp" alt="Mega Sicbo" loading="lazy"><div class="title">Mega Sicbo</div><div class="provider">Pragmatic Play Live</div></div>
         <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/evolution-gaming-bet-with-streamers.webp" alt="Bet with Streamers" loading="lazy"><div class="title">Bet with Streamers</div><div class="provider">Evolution Gaming</div></div>
       </div>
-    </section>
-
-    <section class="explainer">
-      <h2>How it works</h2>
-      <p>The gradient is not painted on the page background at all. It lives on its own <code class="inline">position: fixed</code> element behind the content — that's the part iOS handles fine. What iOS breaks is <code class="inline">background-attachment: fixed</code>, so we simply never use it.</p>
-      <p>Two extra rules make the black bar impossible. The gradient fades to fully transparent before its own edge, and the layer overdraws past the bottom of the viewport using <code class="inline">100lvh</code> — the "largest viewport" unit, meaning the size when Safari's URL bar is collapsed. So when the URL bar expands or collapses, there is no edge to expose.</p>
-      <pre>.glow-fixed {
-  position: fixed;          /* NOT background-attachment */
-  left: 0; right: 0;
-  bottom: -18lvh;           /* overdraw past the edge */
-  height: 52lvh;            /* sized to largest viewport */
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(0deg,
-    rgba(28,52,160,.32) 0%,
-    rgba(22,40,130,.14) 38%,
-    rgba(0,0,0,0)       78%);  /* fades out — no edge */
-}
-body { background: #000; }   /* matches gradient end color */</pre>
-      <p>The bottom nav uses <code class="inline">backdrop-filter: blur()</code>, so whatever scrolls underneath it — cards, gradient, footer — looks intentional instead of clipped.</p>
-    </section>
-
-    <section class="explainer">
-      <h2>What I've been talking about</h2>
-      <ul class="points">
-        <li><b>The bug we're seeing:</b> the glow strip rides the bottom of the viewport with a hard edge, and jumps when the iOS URL bar resizes. Tap <b>Broken (now)</b> above and scroll — that's the current dev build behavior.</li>
-        <li><b>Why "fixed everywhere except iOS" isn't needed:</b> the iOS bug only affects <code class="inline">background-attachment: fixed</code>. A fixed-position element is fully supported, so one implementation works on every platform. No fork.</li>
-        <li><b>Julien's transparent-edge idea is in here too:</b> the gradient terminates in transparent, so even if sizing were off, nothing can cut off visibly. The two ideas combine — they aren't alternatives.</li>
-        <li><b>Option: blue footer.</b> Tap <b>Blue footer</b> above — the footer and copyright bar take the gradient color, so the page bottom isn't black at all and the gradient has nowhere to "end". Design call, both work.</li>
-        <li><b>Horizontal gradients on mobile:</b> same rule applies — as long as every gradient ends in transparent over the page's base color, it can never cut weirdly at any viewport size.</li>
-      </ul>
     </section>
 
     <footer>
