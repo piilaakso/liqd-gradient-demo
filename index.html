@@ -41,9 +41,8 @@
         so URL-bar resizing can never expose an edge */
   .glow-fixed{
     position:fixed; left:0; right:0;
-    bottom:calc(-6vh - 80px);   /* fallback */
-    bottom:calc(-6lvh - 80px);  /* pushed down: tint starts at screen bottom */
-    height:52vh; height:52lvh;
+    bottom:-140px;              /* overdraw below screen; plain px, iOS-proof */
+    height:60vh;                /* iOS vh = large viewport, stable */
     z-index:-1; pointer-events:none;
     background: linear-gradient(0deg,
       rgba(34,64,190,.42) 0%,
@@ -175,7 +174,6 @@
   @media (min-width: 700px){
     main{ max-width: 520px; margin: 0 auto; }
     .bottom-nav{ left: 50%; transform: translateX(-50%); width: 488px; right: auto; }
-    .glow-fixed{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; }
   }
 </style>
 </head>
