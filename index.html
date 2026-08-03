@@ -150,11 +150,12 @@
   }
   .cards::-webkit-scrollbar{ display:none; }
   .card{
-    flex:0 0 auto; width:150px; height:190px; border-radius:18px;
+    flex:0 0 auto; width:150px; aspect-ratio:1; border-radius:26px;
     position:relative; overflow:hidden; background:var(--card);
     display:flex; flex-direction:column; justify-content:flex-end;
     padding:12px; border:1px solid rgba(255,255,255,.05);
   }
+  .card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .card .chip{
     position:absolute; top:10px; left:50%; transform:translateX(-50%);
     font-size:9px; font-weight:600; letter-spacing:.08em;
@@ -251,81 +252,39 @@
     <section class="row">
       <div class="row-head"><h2>LIQD Originals</h2><a class="view-all">View all</a></div>
       <div class="cards">
-        <div class="card" style="background:radial-gradient(120% 100% at 50% 0%, #1a2f6e 0%, #0b1020 60%), #0b1020;">
-          <span class="chip">LIQD ORIGINALS</span><div class="title">Plinko</div>
-        </div>
-        <div class="card" style="background:radial-gradient(120% 100% at 50% 0%, #23407f 0%, #0b1020 60%), #0b1020;">
-          <span class="chip">LIQD ORIGINALS</span><div class="title">Blackjack</div>
-        </div>
-        <div class="card" style="background:radial-gradient(120% 100% at 50% 0%, #5e1f1f 0%, #140b0b 60%), #140b0b;">
-          <span class="chip">LIQD ORIGINALS</span><div class="title">Mines</div>
-        </div>
-        <div class="card soon" style="background:#0d0f15;">
-          <span class="chip">LIQD ORIGINALS</span><span class="soon-label">COMING SOON</span><div class="title">Hi-Lo</div>
-        </div>
-        <div class="card soon" style="background:#0d0f15;">
-          <span class="chip">LIQD ORIGINALS</span><span class="soon-label">COMING SOON</span><div class="title">Dice</div>
-        </div>
-        <div class="card soon" style="background:#0d0f15;">
-          <span class="chip">LIQD ORIGINALS</span><span class="soon-label">COMING SOON</span><div class="title">Coinflip</div>
-        </div>
-        <div class="card soon" style="background:#0d0f15;">
-          <span class="chip">LIQD ORIGINALS</span><span class="soon-label">COMING SOON</span><div class="title">Roulette</div>
-        </div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/plinko.webp" alt="Plinko" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/blackjack.webp" alt="Blackjack" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/mines.webp" alt="Mines" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/hi-lo_coming.webp" alt="Hi-Lo" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/dice_coming.webp" alt="Dice" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/flip_coming.webp" alt="Coinflip" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/originals/roulette_coming.webp" alt="Roulette" loading="lazy"></div>
       </div>
     </section>
 
     <section class="row">
       <div class="row-head"><h2>Slots</h2><a class="view-all">View All</a></div>
       <div class="cards">
-        <div class="card" style="background:linear-gradient(180deg,#7a3c00,#b96a10);">
-          <div class="title">Mega Pyramid</div><div class="provider">Red Tiger</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#0e4d1e,#2f9e44);">
-          <div class="title">Gonzo's Quest</div><div class="provider">NetEnt</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#3b2064,#7048c0);">
-          <div class="title">Gates of Olympus 1000</div><div class="provider">Pragmatic Play</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#8a1d5b,#d84a9b);">
-          <div class="title">Sweet Bonanza 2500</div><div class="provider">Pragmatic Play</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#122c74,#2b5cff);">
-          <div class="title">Zeus vs Hades — Gods of War</div><div class="provider">Pragmatic Play</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#0e4d46,#1f9e8e);">
-          <div class="title">Gator Hunters</div><div class="provider">Nolimit City</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#701a1a,#c0392b);">
-          <div class="title">Sheeple</div><div class="provider">Shady Lady</div>
-        </div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/red-tiger-mega-pyramid.webp" alt="Mega Pyramid" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/netent-gonzos-quest.webp" alt="Gonzo's Quest" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-gates-of-olympus.webp" alt="Gates of Olympus" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-wanted-dead-or-a-wild.webp" alt="Wanted Dead or a Wild" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-fat-panda.webp" alt="Fat Panda" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-hand-of-anubis.webp" alt="Hand of Anubis" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/hacksaw-gaming-stormforged.webp" alt="Stormforged" loading="lazy"></div>
       </div>
     </section>
 
     <section class="row">
       <div class="row-head"><h2>Live Casino</h2><a class="view-all">View All</a></div>
       <div class="cards">
-        <div class="card" style="background:linear-gradient(180deg,#123c22,#1f6e3e);">
-          <div class="title">Speed Roulette 1</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#153a2a,#2a7a52);">
-          <div class="title">Roulette 3 — Macao</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#3d3a10,#8a7f1e);">
-          <div class="title">Roulette 4 — Russian</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#12303c,#1f6a7e);">
-          <div class="title">Roulette 5 — German</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#14401f,#2e8a42);">
-          <div class="title">Roulette 7 — Italian</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#401414,#8a2e2e);">
-          <div class="title">Roulette 6 — Turkish</div><div class="provider">Pragmatic Play Live</div>
-        </div>
-        <div class="card" style="background:linear-gradient(180deg,#5c1020,#b02040);">
-          <div class="title">Auto-Roulette 1</div><div class="provider">Pragmatic Play Live</div>
-        </div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-live-speed-roulette-1.webp" alt="Speed Roulette 1" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/evolution-gaming-roulette.webp" alt="Roulette" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-live-roulette-2.webp" alt="Roulette 2" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-live-speed-baccarat-1.webp" alt="Speed Baccarat 1" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/evolution-gaming-golden-wealth-baccarat.webp" alt="Golden Wealth Baccarat" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/pragmatic-play-live-mega-sicbo.webp" alt="Mega Sicbo" loading="lazy"></div>
+        <div class="card"><img src="https://cdn.liqd.com/games/thumbnails/evolution-gaming-bet-with-streamers.webp" alt="Bet with Streamers" loading="lazy"></div>
       </div>
     </section>
 
