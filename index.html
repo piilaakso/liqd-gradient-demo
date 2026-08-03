@@ -401,22 +401,25 @@
   (function(){
     var nav=document.querySelector('.bottom-nav');
     var opts=nav.querySelectorAll('.opt');
-    var p=0, ly=scrollY||0, tick=false;
-    function apply(){
-      tick=false;
+    var tp=0, p=0, ly=scrollY||0, running=false;
+    function frame(){
+      p+=(tp-p)*0.22;                       /* exponential glide — always smooth */
+      if(Math.abs(tp-p)<0.002){ p=tp; running=false; } else requestAnimationFrame(frame);
       var maxW=Math.min(innerWidth*.92,480);
-      var w=maxW+(176-maxW)*p, h=64-12*p;
-      nav.style.width=w+'px'; nav.style.height=h+'px';
+      nav.style.width=(maxW+(176-maxW)*p)+'px';
+      nav.style.height=(64-12*p)+'px';
       var k=Math.max(0,1-p*1.6);
       for(var i=0;i<opts.length;i++){ opts[i].style.opacity=k; opts[i].style.width=(28*k)+'px'; }
+      if(running) requestAnimationFrame(frame);
     }
+    function kick(){ if(!running){ running=true; requestAnimationFrame(frame); } }
     addEventListener('scroll',function(){
       var y=scrollY, d=y-ly; ly=y;
-      if(y<60){ p=0; }
-      else { p+=(d>0 ? d/140 : d/60); p=Math.max(0,Math.min(1,p)); }
-      if(!tick){ tick=true; requestAnimationFrame(apply); }
+      if(y<60){ tp=0; }
+      else { tp+=(d>0 ? d/100 : d/40); tp=Math.max(0,Math.min(1,tp)); }
+      kick();
     },{passive:true});
-    apply();
+    kick();
   })();
 </script>
 </body>
