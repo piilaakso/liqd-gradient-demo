@@ -39,20 +39,21 @@
      2) gradient fades to fully transparent long before its own edge
      3) layer overdraws past the viewport bottom (lvh + negative offset),
         so URL-bar resizing can never expose an edge */
-  /* progressive blur = stacked strips, NO masks (iOS ignores masks on backdrop-filter) */
-  .pb{ position:fixed; left:0; right:0; z-index:4; pointer-events:none; }
-  .pbt{ top:0; }
-  .pbt.s1{ height:130px; -webkit-backdrop-filter:blur(1px);   backdrop-filter:blur(1px); }
-  .pbt.s2{ height:105px; -webkit-backdrop-filter:blur(2px);   backdrop-filter:blur(2px); }
-  .pbt.s3{ height:82px;  -webkit-backdrop-filter:blur(3.5px); backdrop-filter:blur(3.5px); }
-  .pbt.s4{ height:62px;  -webkit-backdrop-filter:blur(6px);   backdrop-filter:blur(6px); }
-  .pbt.s5{ height:45px;  -webkit-backdrop-filter:blur(9px);   backdrop-filter:blur(9px); }
-  .pbb{ bottom:0; }  /* no overdraw on blur — iOS smears clamped samples into a visible band */
-  .pbb.s1{ height:21vh; -webkit-backdrop-filter:blur(1px);   backdrop-filter:blur(1px); }
-  .pbb.s2{ height:18vh; -webkit-backdrop-filter:blur(1.5px); backdrop-filter:blur(1.5px); }
-  .pbb.s3{ height:15vh; -webkit-backdrop-filter:blur(2px);   backdrop-filter:blur(2px); }
-  .pbb.s4{ height:12vh; -webkit-backdrop-filter:blur(3px);   backdrop-filter:blur(3px); }
-  .pbb.s5{ height:9vh;  -webkit-backdrop-filter:blur(4px);   backdrop-filter:blur(4px); }
+  /* progressive blur — single smooth masked layers, no overdraw */
+  .blur-top{
+    position:fixed; top:0; left:0; right:0; height:140px;
+    z-index:4; pointer-events:none;
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  }
+  .blur-bottom{
+    position:fixed; bottom:0; left:0; right:0; height:22vh;
+    z-index:4; pointer-events:none;
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    -webkit-mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
+  }
   .glow-fixed{
     display:none;  /* tint OFF until blur is confirmed clean */
     position:fixed; left:0; right:0;
@@ -197,22 +198,14 @@
 <body>
 
   <!-- gradient layers -->
-  <div class="pb pbt s1" aria-hidden="true"></div>
-  <div class="pb pbt s2" aria-hidden="true"></div>
-  <div class="pb pbt s3" aria-hidden="true"></div>
-  <div class="pb pbt s4" aria-hidden="true"></div>
-  <div class="pb pbt s5" aria-hidden="true"></div>
+  <div class="blur-top" aria-hidden="true"></div>
 
   <header>
       <img class="logo-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJiIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAuMzggNjQuMTIiPjxkZWZzPjxzdHlsZT4uZHtmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJjIj48Y2lyY2xlIGNsYXNzPSJkIiBjeD0iMTczLjgzIiBjeT0iNTMuNzMiIHI9IjEwLjM5Ii8+PHBhdGggY2xhc3M9ImQiIGQ9Ik0xNDEuMTksMjEuMDljNi4wMS02LjAxLDE1Ljc4LTYuMDEsMjEuNzgsMCw2LjAxLDYuMDEsNi4wMSwxNS43OCwwLDIxLjc4LTYuMDEsNi4wMS0xNS43OCw2LjAxLTIxLjc4LDBzLTYuMDEtMTUuNzgsMC0yMS43OE0xMjkuODgsOS43OGMtMTIuMjYsMTIuMjYtMTIuMjYsMzIuMTUsMCw0NC40MXMzMi4xNSwxMi4yNiw0NC40MSwwYzEyLjI2LTEyLjI2LDEyLjI2LTMyLjE1LDAtNDQuNDEtMTIuMjYtMTIuMjYtMzIuMTUtMTIuMjYtNDQuNDEsMGgwWiIvPjxyZWN0IGNsYXNzPSJkIiB4PSI3OS4yMyIgeT0iLjEyIiB3aWR0aD0iMTYiIGhlaWdodD0iNjEuNTEiIHJ4PSI4IiByeT0iOCIvPjxwYXRoIGNsYXNzPSJkIiBkPSJNNDMuMjEsNjIuMzdoLTEyLjdDMTMuNjYsNjIuMzcsMCw0OC43MSwwLDMxLjg2VjguMTJDMCwzLjcsMy41OC4xMiw4LC4xMmgwYzQuNDIsMCw4LDMuNTgsOCw4djIzLjY0YzAsOC4wNyw2LjU0LDE0LjYyLDE0LjYyLDE0LjYyaDEyLjZjNC40MiwwLDgsMy41OCw4LDhoMGMwLDQuNDItMy41OCw4LTgsOFoiLz48cGF0aCBjbGFzcz0iZCIgZD0iTTIyOC40OSw2Mi4zN2gtMTQuNTRjLTQuNDIsMC04LTMuNTgtOC04aDBjMC00LjQyLDMuNTgtOCw4LThoMTQuNzZjOC4xOSwwLDE1LjI3LTYuMjgsMTUuNjUtMTQuNDYuNDEtOC43LTYuNTYtMTUuOTEtMTUuMTctMTUuOTFoLTE1LjI1Yy00LjQyLDAtOC0zLjU4LTgtOGgwYzAtNC40MiwzLjU4LTgsOC04aDE1LjI1YzE3LjUsMCwzMS42NywxNC40OCwzMS4xNywzMi4wOS0uNDgsMTYuOTktMTQuODksMzAuMjktMzEuODgsMzAuMjlaIi8+PC9nPjwvc3ZnPg==" alt="LIQD">
       <button class="enter-btn">Enter</button>
     </header>
 
-  <div class="pb pbb s1" aria-hidden="true"></div>
-  <div class="pb pbb s2" aria-hidden="true"></div>
-  <div class="pb pbb s3" aria-hidden="true"></div>
-  <div class="pb pbb s4" aria-hidden="true"></div>
-  <div class="pb pbb s5" aria-hidden="true"></div>
+  <div class="blur-bottom" aria-hidden="true"></div>
   <div class="glow-fixed" aria-hidden="true"></div>
 
   <main>
