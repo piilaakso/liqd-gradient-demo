@@ -32,76 +32,26 @@
      THE GRADIENT LAYERS — this is the whole point of the demo
      ============================================================ */
 
-  /* MODE A — "broken": how it behaves now.
-     Glow strip is pinned to the visible viewport bottom, sized in vh,
-     and terminates in a still-visible color -> hard edge that rides
-     along while you scroll and jumps when the iOS URL bar collapses. */
-  .glow-broken{
-    display:none;
-    position:fixed; left:0; right:0; bottom:0;
-    height:24vh;
-    z-index:0; pointer-events:none;
-    background: linear-gradient(0deg,
-      rgba(43,92,255,.55) 0%,
-      rgba(43,92,255,.22) 55%,
-      rgba(43,92,255,.10) 100%); /* non-zero at the top = visible seam */
-    box-shadow: 0 -1px 0 rgba(90,130,255,.35);
-  }
-  body[data-mode="broken"] .glow-broken{ display:block; }
-
   /* MODE B — the fix. Three rules make the bar impossible:
      1) position:fixed LAYER (background-attachment:fixed is broken on iOS)
      2) gradient fades to fully transparent long before its own edge
      3) layer overdraws past the viewport bottom (lvh + negative offset),
         so URL-bar resizing can never expose an edge */
   .glow-fixed{
-    display:none;
     position:fixed; left:0; right:0;
-    bottom:-18vh;               /* fallback */
-    bottom:-18lvh;              /* largest viewport = URL bar collapsed */
+    bottom:-6vh;                /* fallback */
+    bottom:-6lvh;               /* largest viewport = URL bar collapsed */
     height:52vh; height:52lvh;
     z-index:0; pointer-events:none;
     background: linear-gradient(0deg,
-      rgba(28,52,160,.32) 0%,
-      rgba(22,40,130,.14) 38%,
-      rgba(0,0,0,0) 78%);       /* horizontal, subtle, fades to nothing */
-  }
-  body[data-mode="fixed"] .glow-fixed,
-  body[data-mode="footer"] .glow-fixed{ display:block; }
-
-  /* MODE C — additionally tint the footer + copyright bar with the
-     gradient color, so the bottom of the page isn't black at all. */
-  body[data-mode="footer"] footer{
-    background: linear-gradient(180deg,
-      rgba(0,0,0,0) 0%,
-      rgba(18,32,110,.28) 30%,
-      rgba(22,40,140,.45) 100%);
-  }
-  body[data-mode="footer"] .copyright{
-    background: rgba(24,42,150,.35);
-    border-top:1px solid rgba(90,130,255,.25);
+      rgba(34,64,190,.45) 0%,
+      rgba(26,48,150,.22) 30%,
+      rgba(0,0,0,0) 72%);       /* horizontal, fades to nothing */
   }
 
   /* ============================================================ */
 
   main{ position:relative; z-index:1; }
-
-  /* Mode switcher */
-  .switch{
-    position:fixed; top:calc(env(safe-area-inset-top, 0px) + 10px);
-    left:50%; transform:translateX(-50%);
-    z-index:60; display:flex; gap:4px;
-    background:rgba(18,20,28,.6);
-    -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
-    border:1px solid var(--line); border-radius:999px; padding:4px;
-  }
-  .switch button{
-    font-family:inherit; font-size:12px; font-weight:600;
-    color:var(--muted); background:transparent; border:0;
-    padding:7px 12px; border-radius:999px; cursor:pointer; white-space:nowrap;
-  }
-  .switch button.active{ background:var(--blue); color:#fff; }
-  .switch button[data-mode="broken"].active{ background:#c0392b; }
 
   /* Header */
   header{
@@ -221,22 +171,14 @@
   @media (min-width: 700px){
     main{ max-width: 520px; margin: 0 auto; }
     .bottom-nav{ left: 50%; transform: translateX(-50%); width: 488px; right: auto; }
-    .glow-fixed, .glow-broken{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; }
+    .glow-fixed{ max-width: 520px; left: 50%; transform: translateX(-50%); right: auto; width: 100%; }
   }
 </style>
 </head>
-<body data-mode="fixed">
+<body>
 
   <!-- gradient layers -->
-  <div class="glow-broken" aria-hidden="true"></div>
   <div class="glow-fixed" aria-hidden="true"></div>
-
-  <!-- mode switcher -->
-  <div class="switch" role="tablist">
-    <button data-mode="broken" onclick="setMode(this)">Broken (now)</button>
-    <button data-mode="fixed" class="active" onclick="setMode(this)">Fixed layer</button>
-    <button data-mode="footer" onclick="setMode(this)">Blue footer</button>
-  </div>
 
   <main>
     <header>
@@ -343,12 +285,5 @@ body { background: #000; }   /* matches gradient end color */</pre>
     <svg viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-7-4.2L4 20l4.4-1A8 8 0 0 0 12 20z"/><circle cx="8.8" cy="12" r="0.4"/><circle cx="12" cy="12" r="0.4"/><circle cx="15.2" cy="12" r="0.4"/></svg>
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.4-4.4"/></svg>
   </nav>
-
-  <script>
-    function setMode(btn){
-      document.body.dataset.mode = btn.dataset.mode;
-      document.querySelectorAll('.switch button').forEach(b => b.classList.toggle('active', b === btn));
-    }
-  </script>
 </body>
 </html>
