@@ -42,11 +42,13 @@
     bottom:-6vh;                /* fallback */
     bottom:-6lvh;               /* largest viewport = URL bar collapsed */
     height:52vh; height:52lvh;
-    z-index:0; pointer-events:none;
+    z-index:-1; pointer-events:none;
     background: linear-gradient(0deg,
-      rgba(34,64,190,.45) 0%,
-      rgba(26,48,150,.22) 30%,
-      rgba(0,0,0,0) 72%);       /* horizontal, fades to nothing */
+      rgba(34,64,190,.42) 0%,
+      rgba(28,52,160,.24) 28%,
+      rgba(22,42,130,.11) 52%,
+      rgba(16,30,95,.04) 76%,
+      rgba(0,0,0,0) 100%);      /* eased fade — no visible edge */
   }
 
   /* ============================================================ */
@@ -240,7 +242,7 @@
   left: 0; right: 0;
   bottom: -18lvh;           /* overdraw past the edge */
   height: 52lvh;            /* sized to largest viewport */
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   background: linear-gradient(0deg,
     rgba(28,52,160,.32) 0%,
