@@ -41,18 +41,31 @@
         so URL-bar resizing can never expose an edge */
   /* progressive blur — single smooth masked layers, no overdraw */
   /* blur near edges + black fades over them — the fade hides the blur's hard edge, so iOS quirks can't show */
-  .blur-top{ position:fixed; top:0; left:0; right:0; height:90px;
+  .blur-top{ position:fixed; top:0; left:0; right:0; height:80px;
     z-index:4; pointer-events:none;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
-  .fade-top{ position:fixed; top:0; left:0; right:0; height:170px;
+  .fade-top{ position:fixed; top:0; left:0; right:0; height:210px;
     z-index:5; pointer-events:none;
-    background:linear-gradient(180deg, #000 0%, #000 28%, rgba(0,0,0,.72) 55%, rgba(0,0,0,.3) 78%, rgba(0,0,0,0) 100%); }
+    background:linear-gradient(180deg,
+      #000 0%, #000 22%,
+      rgba(0,0,0,.85) 34%, rgba(0,0,0,.68) 45%,
+      rgba(0,0,0,.5) 55%, rgba(0,0,0,.34) 64%,
+      rgba(0,0,0,.21) 72%, rgba(0,0,0,.12) 80%,
+      rgba(0,0,0,.06) 87%, rgba(0,0,0,.03) 92%,
+      rgba(0,0,0,.01) 96%, rgba(0,0,0,0) 100%); }
   .blur-bottom{ position:fixed; bottom:0; left:0; right:0; height:14vh;
     z-index:4; pointer-events:none;
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
   .fade-bottom{ position:fixed; bottom:0; left:0; right:0; height:30vh;
     z-index:5; pointer-events:none;
-    background:linear-gradient(0deg, #000 0%, #000 18%, rgba(0,0,0,.78) 40%, rgba(0,0,0,.42) 62%, rgba(0,0,0,.15) 82%, rgba(0,0,0,0) 100%); }
+    background:linear-gradient(0deg,
+      #000 0%, #000 12%,
+      rgba(0,0,0,.88) 25%, rgba(0,0,0,.74) 35%,
+      rgba(0,0,0,.58) 45%, rgba(0,0,0,.42) 55%,
+      rgba(0,0,0,.29) 64%, rgba(0,0,0,.19) 72%,
+      rgba(0,0,0,.12) 79%, rgba(0,0,0,.07) 85%,
+      rgba(0,0,0,.04) 90%, rgba(0,0,0,.02) 94%,
+      rgba(0,0,0,.01) 97%, rgba(0,0,0,0) 100%); }
 
   /* ============================================================ */
 
